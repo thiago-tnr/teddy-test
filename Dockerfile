@@ -1,7 +1,11 @@
 FROM node:20.5.1-slim
 
-USER node
+WORKDIR /home/app
 
-WORKDIR /home/node/app
+RUN apt-get update
 
-CMD ["tail","-f", "/dev/null"]
+RUN apt-get install -y git
+
+RUN git config --global --add safe.directory /home/app
+
+CMD ["docker", "run", "-it", "-v", "$(pwd)/.git:/app/.git", "onfly-app"]
