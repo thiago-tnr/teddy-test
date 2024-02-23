@@ -1,5 +1,7 @@
+import { Uuid } from '../shared/domain/value-objects/uuid.vo'
+
 export type ExpenseProps = {
-  expense_id?: string
+  expense_id?: Uuid
   description: string
   data?: Date
   user: any
@@ -13,14 +15,14 @@ export type CreateExpenseProps = {
 }
 
 export class Expense {
-  expense_id: string
+  expense_id: Uuid
   description: string
   data: Date
   user: AnalyserOptions
   value: number
 
   constructor (props: ExpenseProps) {
-    this.expense_id = props.expense_id ?? ''
+    this.expense_id = props.expense_id ?? Uuid.create()
     this.description = props.description
     this.data = props.data ?? new Date()
     this.user = props.user

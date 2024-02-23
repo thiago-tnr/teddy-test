@@ -1,4 +1,5 @@
 import { Expense } from '../../domain/expense.entity'
+import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
 
 describe('Expense Unit Tests', () => {
   it('constructor', () => {
@@ -8,7 +9,7 @@ describe('Expense Unit Tests', () => {
       value: 123.45
     })
 
-    expect(expense.expense_id).toBe('')
+    expect(expense.expense_id).toBeInstanceOf(Uuid)
     expect(expense.description).toBe('any_description')
     expect(expense.data).toBeInstanceOf(Date)
   })
@@ -20,7 +21,7 @@ describe('Expense Unit Tests', () => {
       value: 123.45
     })
 
-    expect(expense.expense_id).toBe('')
+    expect(expense.expense_id).toBeInstanceOf(Uuid)
     expect(expense.description).toBe('create_any_description')
     expect(expense.data).toBeInstanceOf(Date)
   })
