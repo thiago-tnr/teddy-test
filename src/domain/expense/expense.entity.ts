@@ -1,4 +1,5 @@
-import { Uuid } from '../shared/domain/value-objects/uuid.vo'
+import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
+import { ExpenseValidatorFactory } from './expense.validator'
 
 export type ExpenseProps = {
   expense_id?: Uuid
@@ -18,7 +19,7 @@ export class Expense {
   expense_id: Uuid
   description: string
   data: Date
-  user: AnalyserOptions
+  user: any
   value: number
 
   constructor (props: ExpenseProps) {
@@ -31,20 +32,23 @@ export class Expense {
 
   // factory method to create a new Expense
   static create (props: CreateExpenseProps): Expense {
-    return new Expense(props)
+    const expense = new Expense(props)
+    Expense.validate(expense)
+    return expense
   }
 
   changeDescription (description: string): void {
     this.description = description
+    Expense.validate(this)
   }
 
   changeValue (value: number): void {
     this.value = value
+    Expense.validate(this)
+  }
+
+  static validate (entity: Expense): void {
+    const validator = ExpenseValidatorFactory.create()
+    validator.validate(entity)
   }
 }
-
-// ● Id
-// ● Descrição (descrição da despesa)
-// ● Data (data de quando ocorreu a despesa)
-// ● Usuário (usuário dono da despesa, um relacionamento com a tabela de Usuários)
-// ● Valor (valor em reais da despesa)

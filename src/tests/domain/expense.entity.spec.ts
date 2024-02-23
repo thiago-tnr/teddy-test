@@ -1,4 +1,4 @@
-import { Expense } from '../../domain/expense.entity'
+import { Expense } from '../../domain/expense/expense.entity'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
 
 describe('Expense Unit Tests', () => {
