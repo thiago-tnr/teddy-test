@@ -15,6 +15,8 @@
     "@swc/core": "^1.4.2",
     "@swc/jest": "^0.2.36",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.14.202",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-config-standard-with-typescript": "^43.0.1",
@@ -27,7 +29,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "git": "^0.1.5"
+    "git": "^0.1.5",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.1"
   },
   "lint-staged": {
     "*.ts": [
