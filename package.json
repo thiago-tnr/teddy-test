@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "husky:install": "husky install",
-    "lint-staged": "lint-staged"
+    "husky:install": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -30,8 +29,9 @@
   "dependencies": {
     "git": "^0.1.5"
   },
-
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+    "*.ts": [
+      "eslint 'src/**' --fix"
+    ]
   }
 }
