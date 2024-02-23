@@ -20,5 +20,10 @@
     "@typescript-eslint/no-throw-literal": "off",
     "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": "off"
-}
+},
+    "settings": {
+        "node" : {
+            "version": "detected" 
+        }
+    }
 }
