@@ -1,5 +1,8 @@
+import { Entity } from '../../shared/domain/protocol/entity-interface'
+import { type ValueObject } from '../../shared/domain/value-object'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
-import { ExpenseValidatorFactory } from './expense.validator'
+import { EntityValidationError } from '../../shared/erros/validate-entity-error.er'
+import { type ExpenseValidator, ExpenseValidatorFactory } from '../entities-validator/expense.validator'
 
 export type ExpenseProps = {
   expense_id?: Uuid
@@ -15,7 +18,7 @@ export type CreateExpenseProps = {
   value: number
 }
 
-export class Expense {
+export class Expense extends Entity {
   expense_id: Uuid
   description: string
   data: Date
@@ -23,11 +26,16 @@ export class Expense {
   value: number
 
   constructor (props: ExpenseProps) {
+    super()
     this.expense_id = props.expense_id ?? Uuid.create()
     this.description = props.description
     this.data = props.data ?? new Date()
     this.user = props.user
     this.value = props.value
+  }
+
+  get entity_id (): ValueObject {
+    return this.expense_id
   }
 
   // factory method to create a new Expense
@@ -47,8 +55,12 @@ export class Expense {
     Expense.validate(this)
   }
 
-  static validate (entity: Expense): void {
+  static validate (entity: Expense): ExpenseValidator {
     const validator = ExpenseValidatorFactory.create()
-    validator.validate(entity)
+    const isValid = validator.validate(entity)
+    if (!isValid) {
+      throw new EntityValidationError()
+    }
+    return validator
   }
 }

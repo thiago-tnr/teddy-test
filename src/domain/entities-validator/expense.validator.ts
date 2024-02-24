@@ -1,5 +1,6 @@
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, validateSync } from 'class-validator'
-import { type Expense } from './expense.entity'
+import { IsDate, IsNotEmpty, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator'
+import { type Expense } from '../entities/expense.entity'
+import { ClassValidatorFields } from '../validator-protocol/class-validator-fields'
 
 export class ExpenseRules {
   @MaxLength(255)
@@ -12,7 +13,7 @@ export class ExpenseRules {
     data?: Date
 
   @IsNotEmpty()
-    user: any
+    user: string
 
   @IsNumber()
   @IsNotEmpty()
@@ -24,9 +25,9 @@ export class ExpenseRules {
 }
 
 // Refactor - strong connection class, needs to be an abstraction
-export class ExpenseValidator {
-  validate (entity: Expense): void {
-    validateSync(new ExpenseRules(entity))
+export class ExpenseValidator extends ClassValidatorFields<ExpenseRules> {
+  validate (entity: Expense): boolean {
+    return super.validate(new ExpenseRules(entity))
   }
 }
 
