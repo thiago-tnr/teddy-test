@@ -1,6 +1,6 @@
 export class Repository<T> {
-  create: (entity: T) => void
-  update: (entity: T) => void
+  create: (entity: T) => Promise<void>
+  update: (entity: T) => Promise<void>
   find: (entity_id: string) => Promise<T | null>
-  delete: (entity_id: string) => void
+  delete: (entity_id: string) => Promise<void>
 }
