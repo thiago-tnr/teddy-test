@@ -13,14 +13,14 @@ export class ExpenseRules {
     data?: Date
 
   @IsNotEmpty()
-    user: string
+    user_owner: string
 
   @IsNumber()
   @IsNotEmpty()
     value: number
 
-  constructor ({ description, data, user, value }: Expense) {
-    Object.assign(this, { description, data, user, value })
+  constructor ({ description, data, user_owner, value }: Expense) {
+    Object.assign(this, { description, data, user_owner, value })
   }
 }
 

@@ -12,7 +12,7 @@ describe('Expense Unit Tests', () => {
     it('constructor', () => {
       const expense = new Expense({
         description: 'any_description',
-        user: 'any_user',
+        user_owner: 'any_user',
         value: 123.45
       })
 
@@ -24,7 +24,7 @@ describe('Expense Unit Tests', () => {
     it('should be create a category', () => {
       const expense = Expense.create({
         description: 'create_any_description',
-        user: 'create_any_user',
+        user_owner: 'create_any_user',
         value: 123.45
       })
 
@@ -36,7 +36,7 @@ describe('Expense Unit Tests', () => {
     it('should be update a description', () => {
       const expense = Expense.create({
         description: 'create_any_description',
-        user: 'create_any_user',
+        user_owner: 'create_any_user',
         value: 123.45
       })
 
@@ -47,7 +47,7 @@ describe('Expense Unit Tests', () => {
     it('should be update a value', () => {
       const expense = Expense.create({
         description: 'create_any_description',
-        user: 'create_any_user',
+        user_owner: 'create_any_user',
         value: 123.45
       })
 

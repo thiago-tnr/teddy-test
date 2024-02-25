@@ -8,13 +8,13 @@ export type ExpenseProps = {
   expense_id?: Uuid
   description: string
   data?: Date
-  user: any
+  user_owner: any
   value: number
 }
 
 export type CreateExpenseProps = {
   description: string
-  user: any
+  user_owner: any
   value: number
 }
 
@@ -22,7 +22,7 @@ export class Expense extends Entity {
   expense_id: Uuid
   description: string
   data: Date
-  user: any
+  user_owner: any
   value: number
 
   constructor (props: ExpenseProps) {
@@ -30,7 +30,7 @@ export class Expense extends Entity {
     this.expense_id = props.expense_id ?? Uuid.create()
     this.description = props.description
     this.data = props.data ?? new Date()
-    this.user = props.user
+    this.user_owner = props.user_owner
     this.value = props.value
   }
 

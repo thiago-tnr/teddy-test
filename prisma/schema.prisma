@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id String    @id()  @db.NVarChar(255)
+  name    String    @db.NVarChar(255)
+  email   String    @db.NVarChar(255)
+  senha   String    @db.NVarChar(255)
+  Expense Expense[]
+}
+
+model Expense {
+  expense_id  String  @id()
+  description String?  @db.NVarChar(255)
+  data        DateTime
+  value       Int      @default(0)
+  user_owner  String   @db.NVarChar(255)
+  user        User     @relation(fields: [user_owner], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
