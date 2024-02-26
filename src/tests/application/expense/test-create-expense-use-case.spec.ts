@@ -1,7 +1,6 @@
 import { CreateExpenseUseCase } from '../../../application/expense/create-expense-use-case'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type Expense } from '../../../domain/entities/expense.entity'
-import { Uuid } from '../../../shared/domain/value-objects/uuid.vo'
 describe('Create Expense UseCase', () => {
   let useCase: CreateExpenseUseCase
   const repositoryMock: Repository<Expense> = {
@@ -24,6 +23,5 @@ describe('Create Expense UseCase', () => {
 
     expect(spy).toHaveBeenCalledTimes(1)
     expect(output).toHaveProperty('expense_id')
-    expect(output.expense_id).toBeInstanceOf(Uuid)
   })
 })

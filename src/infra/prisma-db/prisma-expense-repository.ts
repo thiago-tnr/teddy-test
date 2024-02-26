@@ -12,7 +12,7 @@ export class ExpenseRepository implements Repository<Expense> {
   async create (entity: Expense): Promise<void> {
     await this.prisma.expense.create({
       data: {
-        expense_id: entity.expense_id as unknown as string,
+        expense_id: entity.expense_id.id,
         description: entity.description,
         data: entity.data,
         value: entity.value,
@@ -24,16 +24,16 @@ export class ExpenseRepository implements Repository<Expense> {
   async update (entity: Expense): Promise<void> {
     const data = await this.prisma.expense.findFirst({
       where: {
-        expense_id: entity.expense_id as unknown as string
+        expense_id: entity.expense_id.id
       }
     })
 
     if (!data) throw new NotFoundError()
 
     await this.prisma.expense.update({
-      where: { expense_id: entity.expense_id as unknown as string },
+      where: { expense_id: entity.expense_id.id },
       data: {
-        expense_id: entity.expense_id as unknown as string,
+        expense_id: entity.expense_id.id,
         description: entity.description,
         data: entity.data,
         value: entity.value,

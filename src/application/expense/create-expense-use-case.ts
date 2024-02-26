@@ -1,7 +1,6 @@
 import { Expense } from '../../domain/entities/expense.entity'
 import { type Repository } from '../../infra/protocols/repository-interface'
 import { type UseCase } from '../../shared/application/protocol/use-case-interface'
-import { type Uuid } from '../../shared/domain/value-objects/uuid.vo'
 
 export type CreateExpenseInput = {
   description: string
@@ -9,7 +8,7 @@ export type CreateExpenseInput = {
   value: number
 }
 export type CreateExpenseOutPut = {
-  expense_id: Uuid
+  expense_id: string
   description: string
   data: Date
   user_owner: any
@@ -22,16 +21,16 @@ export class CreateExpenseUseCase implements UseCase<CreateExpenseInput, CreateE
   ) {}
 
   async execute (input: CreateExpenseInput): Promise<CreateExpenseOutPut> {
-    const entity = Expense.create(input)
+    const expense = Expense.create(input)
 
-    await this.repository.create(entity)
+    await this.repository.create(expense)
 
     return {
-      expense_id: entity.expense_id,
-      description: entity.description,
-      data: entity.data,
-      user_owner: entity.user_owner,
-      value: entity.value
+      expense_id: expense.expense_id.id,
+      description: expense.description,
+      data: expense.data,
+      user_owner: expense.user_owner,
+      value: expense.value
     }
   }
 }
