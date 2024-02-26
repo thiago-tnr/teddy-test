@@ -1,6 +1,6 @@
-import { Expense } from '../../domain/entities/expense.entity'
-import { type Repository } from '../../infra/protocols/repository-interface'
-import { type UseCase } from '../../shared/application/protocol/use-case-interface'
+import { Expense } from '../../../domain/entities/expense.entity'
+import { type Repository } from '../../../infra/protocols/repository-interface'
+import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
 
 export type CreateExpenseInput = {
   description: string
@@ -18,7 +18,7 @@ export type CreateExpenseOutPut = {
 export class CreateExpenseUseCase implements UseCase<CreateExpenseInput, CreateExpenseOutPut> {
   constructor (
     private readonly repository: Repository<Expense>
-  ) {}
+  ) { }
 
   async execute (input: CreateExpenseInput): Promise<CreateExpenseOutPut> {
     const expense = Expense.create(input)

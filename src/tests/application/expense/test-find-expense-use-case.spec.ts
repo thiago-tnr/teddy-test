@@ -1,4 +1,4 @@
-import { FindExpenseUseCase } from '../../../application/expense/find-expense-use-case'
+import { FindExpenseUseCase } from '../../../application/expense/use-case/find-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'

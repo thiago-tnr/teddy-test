@@ -1,4 +1,4 @@
-import { UpdateExpenseUseCase } from '../../../application/expense/update-expense-use-case'
+import { UpdateExpenseUseCase } from '../../../application/expense/use-case/update-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'

@@ -1,4 +1,4 @@
-import { DeleteExpenseUseCase } from '../../../application/expense/delete-expense-use-case'
+import { DeleteExpenseUseCase } from '../../../application/expense/use-case/delete-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'

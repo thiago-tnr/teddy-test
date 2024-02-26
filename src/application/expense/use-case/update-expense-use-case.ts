@@ -1,7 +1,7 @@
-import { type Expense } from '../../domain/entities/expense.entity'
-import { type Repository } from '../../infra/protocols/repository-interface'
-import { type UseCase } from '../../shared/application/protocol/use-case-interface'
-import { NotFoundError } from '../../shared/erros/not-found-error.er'
+import { type Expense } from '../../../domain/entities/expense.entity'
+import { type Repository } from '../../../infra/protocols/repository-interface'
+import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
+import { NotFoundError } from '../../../shared/erros/not-found-error.er'
 
 export type UpdateExpenseInput = {
   expense_id: string
@@ -22,7 +22,7 @@ export type UpdateExpenseOutPut = {
 export class UpdateExpenseUseCase implements UseCase<UpdateExpenseInput, UpdateExpenseOutPut> {
   constructor (
     private readonly repository: Repository<Expense>
-  ) {}
+  ) { }
 
   async execute (input: UpdateExpenseInput): Promise<UpdateExpenseOutPut> {
     const expense = await this.repository.find(input.expense_id)
