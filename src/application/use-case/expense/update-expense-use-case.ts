@@ -15,7 +15,7 @@ export type UpdateExpenseInput = {
 export type UpdateExpenseOutPut = {
   expense_id: string
   description?: string
-  data?: Date
+  data?: Date | string
   user_owner?: any
   value?: number
 }

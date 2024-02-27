@@ -11,7 +11,7 @@ export type CreateExpenseInput = {
 export type CreateExpenseOutPut = {
   expense_id: string
   description: string
-  data: Date
+  data: Date | string
   user_owner: any
   value: number
 }

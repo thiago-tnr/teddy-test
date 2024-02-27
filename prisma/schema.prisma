@@ -11,7 +11,7 @@ model User {
   user_id String    @id()  @db.NVarChar(255)
   name    String    @db.NVarChar(255)
   email   String    @db.NVarChar(255)
-  senha   String    @db.NVarChar(255)
+  password   String    @db.NVarChar(255)
 }
 
 model Expense {

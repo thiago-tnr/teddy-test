@@ -52,11 +52,11 @@ export class ExpenseRepository implements Repository<Expense> {
       }
     })
 
-    if (!data) return
+    if (!data) return null
 
     return new Expense({
       expense_id: Uuid.create(data.expense_id),
-      description: data.description,
+      description: data.description!,
       data: data.data,
       value: data.value,
       user_owner: data.user_owner
