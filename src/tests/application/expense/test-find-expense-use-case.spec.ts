@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { FindExpenseUseCase } from '../../../application/expense/use-case/find-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'

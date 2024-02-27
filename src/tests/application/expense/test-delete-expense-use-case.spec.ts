@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { DeleteExpenseUseCase } from '../../../application/expense/use-case/delete-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'

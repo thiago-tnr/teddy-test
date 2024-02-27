@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe'
 import { type Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
@@ -18,9 +19,10 @@ export type UpdateExpenseOutPut = {
   user_owner?: any
   value?: number
 }
-
+@injectable()
 export class UpdateExpenseUseCase implements UseCase<UpdateExpenseInput, UpdateExpenseOutPut> {
   constructor (
+    @inject('ExpenseRepository')
     private readonly repository: Repository<Expense>
   ) { }
 

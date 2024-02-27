@@ -3,7 +3,7 @@ import { type Expense } from '../entities/expense.entity'
 import { ClassValidatorFields } from '../validator-protocol/class-validator-fields'
 
 export class ExpenseRules {
-  @MaxLength(255)
+  @MaxLength(195)
   @IsString()
   @IsNotEmpty()
     description: string

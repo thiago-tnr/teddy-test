@@ -1,6 +1,7 @@
 import { type Request, type Response } from 'express'
 import { type Controller } from '../../../shared/application/protocol/controller-interface'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
+import { inject, injectable } from 'tsyringe'
 
 export type UpdateExpenseInputController = {
   description?: string
@@ -13,9 +14,10 @@ export type UpdateExpenseOutPutController = {
   user_owner: any
   value: number
 }
-
+@injectable()
 export class UpdateExpenseController implements Controller {
   constructor (
+    @inject('UpdateExpenseUseCase')
     private readonly useCase: UseCase<UpdateExpenseInputController, UpdateExpenseOutPutController>
   ) {}
 

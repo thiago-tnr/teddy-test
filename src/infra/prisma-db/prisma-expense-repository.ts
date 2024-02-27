@@ -1,11 +1,14 @@
+import { inject, injectable } from 'tsyringe'
 import { Expense } from '../../domain/entities/expense.entity'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
 import { NotFoundError } from '../../shared/erros/not-found-error.er'
 import { type Repository } from '../protocols/repository-interface'
 import { type PrismaClient } from '@prisma/client'
 // TODO MAKE TESTS
+@injectable()
 export class ExpenseRepository implements Repository<Expense> {
   constructor (
+    @inject('PrismaClient')
     private readonly prisma: PrismaClient
   ) { }
 
@@ -48,6 +51,9 @@ export class ExpenseRepository implements Repository<Expense> {
         expense_id: entity_id
       }
     })
+
+    if (!data) return
+
     return new Expense({
       expense_id: Uuid.create(data.expense_id),
       description: data.description,

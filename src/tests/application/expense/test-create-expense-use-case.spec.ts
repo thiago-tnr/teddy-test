@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { CreateExpenseUseCase } from '../../../application/expense/use-case/create-expense-use-case'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type Expense } from '../../../domain/entities/expense.entity'

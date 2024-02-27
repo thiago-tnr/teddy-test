@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe'
 import { type Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
@@ -8,10 +9,11 @@ export type DeleteExpenseInput = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-type DeleteExpenseOutPut = void
-
+export type DeleteExpenseOutPut = void
+@injectable()
 export class DeleteExpenseUseCase implements UseCase<DeleteExpenseInput, DeleteExpenseOutPut> {
   constructor (
+    @inject('ExpenseRepository')
     private readonly repository: Repository<Expense>
   ) { }
 
