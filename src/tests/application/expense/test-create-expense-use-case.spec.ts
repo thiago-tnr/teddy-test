@@ -1,7 +1,7 @@
 import 'reflect-metadata'
-import { CreateExpenseUseCase } from '../../../application/expense/use-case/create-expense-use-case'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type Expense } from '../../../domain/entities/expense.entity'
+import { CreateExpenseUseCase } from '../../../application/use-case/expense'
 describe('Create Expense UseCase', () => {
   let useCase: CreateExpenseUseCase
   const repositoryMock: Repository<Expense> = {

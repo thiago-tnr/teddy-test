@@ -1,8 +1,8 @@
 import 'reflect-metadata'
-import { FindExpenseUseCase } from '../../../application/expense/use-case/find-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'
+import { FindExpenseUseCase } from '../../../application/use-case/expense'
 
 describe('Find Expense UseCase', () => {
   let useCase: FindExpenseUseCase

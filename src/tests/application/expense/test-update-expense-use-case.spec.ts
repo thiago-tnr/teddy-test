@@ -1,8 +1,8 @@
 import 'reflect-metadata'
-import { UpdateExpenseUseCase } from '../../../application/expense/use-case/update-expense-use-case'
 import { Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'
+import { UpdateExpenseUseCase } from '../../../application/use-case/expense'
 
 describe('Update Expense UseCase', () => {
   let useCase: UpdateExpenseUseCase

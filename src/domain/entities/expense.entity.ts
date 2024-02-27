@@ -7,7 +7,7 @@ import { type ExpenseValidator, ExpenseValidatorFactory } from '../entities-vali
 export type ExpenseProps = {
   expense_id?: Uuid
   description: string
-  data?: Date
+  data?: Date | string
   user_owner: any
   value: number
 }
@@ -21,7 +21,7 @@ export type CreateExpenseProps = {
 export class Expense extends Entity {
   expense_id: Uuid
   description: string
-  data: Date
+  data: Date | string
   user_owner: any
   value: number
 
@@ -56,11 +56,19 @@ export class Expense extends Entity {
   }
 
   static validate (entity: Expense): ExpenseValidator {
-    const validator = ExpenseValidatorFactory.create()
-    const isValid = validator.validate(entity)
-    if (!isValid) {
-      throw new EntityValidationError()
+    let returnValidator
+    try {
+      const validator = ExpenseValidatorFactory.create()
+      const isValid = validator.validate(entity)
+      if (!isValid) {
+        throw new EntityValidationError()
+      }
+
+      returnValidator = validator
+    } catch (error) {
+      console.log(error)
     }
-    return validator
+
+    return returnValidator!
   }
 }

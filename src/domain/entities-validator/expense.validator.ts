@@ -1,4 +1,4 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator'
+import { IsNotEmpty, IsOptional, IsString, MaxLength, IsNumber } from 'class-validator'
 import { type Expense } from '../entities/expense.entity'
 import { ClassValidatorFields } from '../validator-protocol/class-validator-fields'
 
@@ -8,9 +8,9 @@ export class ExpenseRules {
   @IsNotEmpty()
     description: string
 
-  @IsDate()
+  @IsString()
   @IsOptional()
-    data?: Date
+    data?: Date | string
 
   @IsNotEmpty()
     user_owner: string

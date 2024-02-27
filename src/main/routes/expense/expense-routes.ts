@@ -1,9 +1,6 @@
 import { Router, type Request, type Response } from 'express'
-import { CreateExpenseController } from '../../../application/expense/controllers/create-expense-controller'
-import { FindExpenseController } from '../../../application/expense/controllers/find-expense-controller'
-import { UpdateExpenseController } from '../../../application/expense/controllers/update-expense-controller'
-import { DeleteExpenseController } from '../../../application/expense/controllers/delete-expense-controller'
 import { container } from 'tsyringe'
+import { CreateExpenseController, FindExpenseController, UpdateExpenseController, DeleteExpenseController } from '../../../application/controllers/expense'
 
 export const expenseRoutes = Router()
 
