@@ -6,18 +6,18 @@ export class ExpenseRules {
   @MaxLength(195)
   @IsString()
   @IsNotEmpty()
-    description: string
+    description!: string
 
   @IsString()
   @IsOptional()
     data?: Date | string
 
   @IsNotEmpty()
-    user_owner: string
+    user_owner!: string
 
   @IsNumber()
   @IsNotEmpty()
-    value: number
+    value!: number
 
   constructor ({ description, data, user_owner, value }: Expense) {
     Object.assign(this, { description, data, user_owner, value })
