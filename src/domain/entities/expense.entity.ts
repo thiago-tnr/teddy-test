@@ -66,7 +66,6 @@ export class Expense extends Entity {
 
       returnValidator = validator
     } catch (error) {
-      console.log(error)
     }
 
     return returnValidator!

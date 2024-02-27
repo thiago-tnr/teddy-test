@@ -66,7 +66,7 @@ export class User extends Entity {
 
       returnValidator = validator
     } catch (error) {
-      console.log(error)
+      console.log('User validation error')
     }
 
     return returnValidator!
