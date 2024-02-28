@@ -15,6 +15,7 @@
 - [Rotas e Autenticação](#rotas-e-autenticação)
 - [Boas práticas](#boas-práticas)
 - [Benefícios](#benefícios)
+- [Observação](#observação)
 - [Licença](#licença)
 
 ## Sobre o Projeto
@@ -156,6 +157,10 @@ Notificação por email:
 - Notificação instantânea de novas despesas.
 
 - Código de alta qualidade e fácil de manter.
+
+## Observação
+
+- Para facilitar os testes do código implementado a key de envio de email do gmail está sendo enviado no .env.example
 
 ## Licença
 
