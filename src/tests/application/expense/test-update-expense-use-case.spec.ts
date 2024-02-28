@@ -11,7 +11,8 @@ describe('Update Expense UseCase', () => {
     create: jest.fn(),
     update: jest.fn(),
     find: jest.fn(),
-    delete: jest.fn()
+    delete: jest.fn(),
+    findByEmail: jest.fn()
   }
 
   beforeEach(async () => {
@@ -37,12 +38,20 @@ describe('Update Expense UseCase', () => {
     })
     await repositoryMock.create(expense)
 
-    jest.spyOn(repositoryMock, 'find').mockImplementation(() => Promise.resolve(expense))
+    jest.spyOn(repositoryMock, 'find').mockImplementation(() => {
+      const mockedExpense = Expense.create({
+        description: 'create_any_description',
+        user_owner: 'create_any_user', // Set user_owner to the user who should be able to update
+        value: 123.45
+      })
+      return Promise.resolve(mockedExpense)
+    })
     const spy = jest.spyOn(repositoryMock, 'update')
 
     const output = await useCase.execute({
       expense_id: expense.expense_id.id,
-      description: 'new description'
+      description: 'new description',
+      user_id: 'create_any_user'
     })
 
     expect(spy).toHaveBeenCalledTimes(1)

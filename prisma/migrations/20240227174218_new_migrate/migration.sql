@@ -7,7 +7,7 @@ CREATE TABLE [dbo].[User] (
     [user_id] NVARCHAR(255) NOT NULL,
     [name] NVARCHAR(255) NOT NULL,
     [email] NVARCHAR(255) NOT NULL,
-    [senha] NVARCHAR(255) NOT NULL,
+    [password] NVARCHAR(255) NOT NULL,
     CONSTRAINT [User_pkey] PRIMARY KEY CLUSTERED ([user_id])
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Expense] (
 );
 
 -- AddForeignKey
-ALTER TABLE [dbo].[Expense] ADD CONSTRAINT [Expense_user_owner_fkey] FOREIGN KEY ([user_owner]) REFERENCES [dbo].[User]([user_id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE [dbo].[Expense] ADD CONSTRAINT [Expense_user_owner_fkey] FOREIGN KEY ([user_owner]) REFERENCES [dbo].[User]([user_id]) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 COMMIT TRAN;
 

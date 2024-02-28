@@ -3,4 +3,5 @@ export class Repository<T> {
   update!: (entity: T) => Promise<void>
   find!: (entity_id: string) => Promise<T | null>
   delete!: (entity_id: string) => Promise<void>
+  findByEmail!: (entity_id: string) => Promise<T | null>
 }

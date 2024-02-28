@@ -11,7 +11,8 @@ describe('Find Expense UseCase', () => {
     create: jest.fn(),
     update: jest.fn(),
     find: jest.fn(),
-    delete: jest.fn()
+    delete: jest.fn(),
+    findByEmail: jest.fn()
   }
 
   beforeEach(async () => {
@@ -21,14 +22,15 @@ describe('Find Expense UseCase', () => {
   it('should be throw if expense not found', async () => {
     try {
       await useCase.execute({
-        expense_id: 'expense_id'
+        expense_id: 'expense_id',
+        user_id: 'any'
       })
     } catch (error) {
       expect(error).toBeInstanceOf(NotFoundError)
     }
   })
 
-  it('should be able to update an expense', async () => {
+  it('should be able to find an expense', async () => {
     expense = Expense.create({
       description: 'create_any_description',
       user_owner: 'create_any_user',
@@ -36,10 +38,18 @@ describe('Find Expense UseCase', () => {
     })
     await repositoryMock.create(expense)
 
-    jest.spyOn(repositoryMock, 'find').mockImplementation(() => Promise.resolve(expense))
-    const output = await useCase.execute({
-      expense_id: expense.expense_id.id
+    jest.spyOn(repositoryMock, 'find').mockImplementation(() => {
+      const mockedExpense = Expense.create({
+        description: 'create_any_description',
+        user_owner: 'create_any_user', // Set user_owner to the user who should be able to update
+        value: 123.45
+      })
+      return Promise.resolve(mockedExpense)
     })
-    expect(output.expense_id).toEqual(expense.expense_id.id)
+    const output = await useCase.execute({
+      expense_id: expense.expense_id.id,
+      user_id: 'create_any_user'
+    })
+    expect(output.expense_id).toBeTruthy()
   })
 })

@@ -14,7 +14,7 @@ expenseRoutes.get('/:expense_id', async (req: Request, res: Response) => {
   await findExpenseController.handle(req, res)
 })
 
-expenseRoutes.patch('/:expense_id', async (req: Request, res: Response) => {
+expenseRoutes.patch('/', async (req: Request, res: Response) => {
   const updateExpenseController = container.resolve(UpdateExpenseController)
   await updateExpenseController.handle(req, res)
 })

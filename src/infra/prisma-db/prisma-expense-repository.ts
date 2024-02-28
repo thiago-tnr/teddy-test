@@ -78,4 +78,8 @@ export class ExpenseRepository implements Repository<Expense> {
       }
     })
   }
+
+  findByEmail (entity_id: string): Promise<Expense | null> {
+    throw Error()
+  }
 }

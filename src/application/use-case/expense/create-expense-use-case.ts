@@ -24,7 +24,6 @@ export class CreateExpenseUseCase implements UseCase<CreateExpenseInput, CreateE
 
   async execute (input: CreateExpenseInput): Promise<CreateExpenseOutPut> {
     const expense = Expense.create(input)
-
     await this.repository.create(expense)
 
     return {

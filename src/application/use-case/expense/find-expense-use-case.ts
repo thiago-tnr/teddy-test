@@ -3,9 +3,11 @@ import { type Expense } from '../../../domain/entities/expense.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
 import { NotFoundError } from '../../../shared/erros/not-found-error.er'
+import { UnauthorizedError } from '../../../shared/erros/unauthorized-error.er'
 
 export type FindExpenseInput = {
   expense_id: string
+  user_id: string
 }
 // TODO updated_at is missing!
 export type FindExpenseOutPut = {
@@ -26,6 +28,8 @@ export class FindExpenseUseCase implements UseCase<FindExpenseInput, FindExpense
     const expense = await this.repository.find(input.expense_id)
 
     if (!expense) throw new NotFoundError()
+
+    if (expense?.user_owner !== input.user_id) throw new UnauthorizedError('Unauthorized')
 
     return {
       expense_id: expense.expense_id.id,

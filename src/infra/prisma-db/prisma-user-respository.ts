@@ -3,9 +3,11 @@ import { User } from '../../domain/entities/user.entity'
 import { type Repository } from '../protocols/repository-interface'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
 import { NotFoundError } from '../../shared/erros/not-found-error.er'
-
-export class UserRepositoty implements Repository<User> {
+import { inject, injectable } from 'tsyringe'
+@injectable()
+export class UserRepository implements Repository<User> {
   constructor (
+    @inject('PrismaClient')
     private readonly prisma: PrismaClient
   ) { }
 
@@ -70,6 +72,23 @@ export class UserRepositoty implements Repository<User> {
       where: {
         user_id: entity_id
       }
+    })
+  }
+
+  async findByEmail (email: string): Promise<User | null> {
+    const data = await this.prisma.user.findFirst({
+      where: {
+        email
+      }
+    })
+
+    if (!data) return null
+
+    return new User({
+      user_id: Uuid.create(data.user_id),
+      name: data.name,
+      email: data.email,
+      password: data.password
     })
   }
 }
