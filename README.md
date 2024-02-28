@@ -88,9 +88,9 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
    A aplicação estará disponível em `http://localhost:3000`.
 
-4. **configurando o DB:**
+4. **configurando as variáveis:**
 
-   Não se esqueça de configurar o DB com base no .env.example usando a variável abaixo
+   Não se esqueça de configurar o variáveis com base no .env.example
 
    ```bash
    JWT_SECRET_KEY
