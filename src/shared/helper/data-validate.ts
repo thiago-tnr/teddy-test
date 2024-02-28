@@ -1,23 +1,27 @@
 import { InvalidParamError } from '../erros/invalid-param.er'
 
-export const dataValidate = (data: string): string => {
+export const dataValidate = async (data: string): Promise<string> => {
   const regex = /^\d{4}-\d{2}-\d{2}$/
   if (!regex.test(data)) {
     throw new InvalidParamError('Invalid date format. Expected YYYY-MM-DD.')
   }
 
-  // Parse date string using destructuring
   const [year, month, day] = data.split('-').map(Number)
 
-  // Create Date object with zero-based month (January = 0)
   const dueDate = new Date(year, month - 1, day, 23, 59, 59)
   const currentDate = new Date()
 
-  // Compare dates in milliseconds and throw error if invalid
-  if (dueDate.getTime() < currentDate.getTime()) {
-    throw new InvalidParamError('The informed date is before the current date.')
+  const today = JSON.parse(JSON.stringify(new Date()))
+
+  if (data === today.split('T')[0]) {
+    return JSON.parse(JSON.stringify(currentDate))
+  } else if (data < today.split('T')[0]) {
+    return JSON.parse(JSON.stringify(new Date(data)))
   }
 
-  // Return formatted due date in US format
+  if (dueDate.getTime() > currentDate.getTime()) {
+    throw new InvalidParamError('The informed date is after the current date.')
+  }
+
   return JSON.parse(JSON.stringify(currentDate))
 }

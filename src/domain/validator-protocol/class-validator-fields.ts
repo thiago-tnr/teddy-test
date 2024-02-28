@@ -3,8 +3,14 @@ import { validateSync } from 'class-validator'
 import { type FieldsErrors, type IValidatorFields } from './validator-fields-interface'
 
 export abstract class ClassValidatorFields<PropsValidated> implements IValidatorFields<PropsValidated> {
-  errors: FieldsErrors
-  validatedData: PropsValidated
+  errors: FieldsErrors = {}
+  validatedData!: PropsValidated
+
+  constructor () {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    this.validatedData ?? undefined
+  }
+
   validate (data: PropsValidated): boolean {
     const errors = validateSync(data as object)
     if (errors.length) {

@@ -43,7 +43,7 @@ export class CreateExpenseController implements Controller {
     const expenseDto: CreateExpenseInputController = CreateExpenseInput.parse(request.body)
 
     if (expenseDto.data) {
-      const newDataValidate = dataValidate(expenseDto.data)
+      const newDataValidate = await dataValidate(expenseDto.data)
       expenseDto.data = newDataValidate
     }
 

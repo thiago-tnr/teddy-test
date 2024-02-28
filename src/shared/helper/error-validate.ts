@@ -1,7 +1,15 @@
 import { type NextFunction, type Request, type Response } from 'express'
+import { ZodError } from 'zod'
 
 export const errorValidate = (err: Error, request: Request, response: Response, next: NextFunction): Response => {
   // Handle cases where `err` is not an `Error`
+  if (err instanceof ZodError) {
+    const errorMessages = err.errors.map(error => error.message)
+    return response.status(400).json({
+      status: 'ZodError',
+      message: `Some param is invalid: ${errorMessages.join(', ')}`
+    })
+  }
   if (!(err instanceof Error)) {
     return response.status(500).json({
       status: 'InternalServerError',
