@@ -101,7 +101,7 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
 - Autenticação de usuário: garante acesso restrito à API através de token JWT.
 
-- CRUD de despesas:
+CRUD de despesas:
 
 - Criação: registre novas despesas com validação de dados (data, valor, descrição).
 
@@ -111,7 +111,7 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
 - Exclusão: remova despesas que não precisa mais.
 
-- Validação de dados:
+Validação de dados:
 
 - Usuário existente: garante que o usuário da despesa está cadastrado.
 
@@ -121,13 +121,13 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
 - Descrição concisa: limita o tamanho da descrição a 191 caracteres.
 
-- Restrição de acessos:
+Restrição de acessos:
 
 - Somente o usuário dono da despesa pode realizar CRUD.
 
 - Protege contra acessos indevidos e alterações em dados de outros usuários.
 
-- Notificação por email:
+Notificação por email:
 
 - Envia email para o usuário ao cadastrar uma despesa.
 
