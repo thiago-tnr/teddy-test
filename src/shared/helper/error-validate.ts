@@ -28,7 +28,7 @@ export const errorValidate = (err: Error, request: Request, response: Response, 
         status: err.name,
         message: err.message
       })
-    case 'UnauthorizedError':
+    case 'UsageError':
       return response.status(403).json({
         status: err.name,
         message: err.message

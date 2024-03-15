@@ -1,8 +1,8 @@
-# Teste Houer - inscriçao em vaga
+# Teste Seidor - uso de veículo
 
 ![Logo](logo.png)
 
-**Gerencie Usuários e Vagas de Emprego com Facilidade**
+**Gerencie Usuários, Carros e Uso de Carros com Facilidade**
 
 ## Índice
 
@@ -20,7 +20,7 @@
 
 ## Sobre o Projeto
 
-API RESTful desenvolvida em Node.js para gerenciamento de despesas, com foco em segurança e boas práticas de desenvolvimento.
+API RESTful desenvolvida em Node.js para gerenciamento de uso de carro, com foco em boas práticas de desenvolvimento.
 
 ### Construído Com
 
@@ -29,7 +29,6 @@ API RESTful desenvolvida em Node.js para gerenciamento de despesas, com foco em 
 - Express.js
 - Prisma
 - Jest
-- JWT (Tokens JSON Web)
 
 ## Início Rápido
 
@@ -92,11 +91,6 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
    Não se esqueça de configurar o variáveis com base no .env.example
 
-   ```bash
-   JWT_SECRET_KEY
-   REFRESH_JWT_SEC
-   EMAIL_PASSWORD
-   ```
 ## Funcionalidades
 
 

@@ -1,17 +1,20 @@
-import { type CreateExpenseInput, type CreateExpenseOutPut, CreateExpenseUseCase, type FindExpenseInput, type FindExpenseOutPut, FindExpenseUseCase, type UpdateExpenseInput, type UpdateExpenseOutPut, UpdateExpenseUseCase, type DeleteExpenseInput, type DeleteExpenseOutPut, DeleteExpenseUseCase } from '../../../application/use-case/expense'
-import { type CreateUserInput, type CreateUserOutPut, CreateUserUseCase, type FindUserInput, type FindUserOutPut, FindUserUseCase, type UpdateUserInput, type UpdateUserOutPut, UpdateUserUseCase, type DeleteUserInput, type DeleteUserOutPut, DeleteUserUseCase } from '../../../application/use-case/user'
-import LoginUserUseCase, { type LoginUserUseCaseInput, type LoginUserUseCaseOutPut } from '../../../application/use-case/user/login-user-use-case'
+import { type CreateCarInput, type CreateCarOutPut, CreateCarUseCase, type FindCarInput, type FindCarOutPut, FindCarUseCase, type UpdateCarInput, type UpdateCarOutPut, UpdateCarUseCase, type DeleteCarInput, type DeleteCarOutPut, DeleteCarUseCase } from '../../../application/use-case/car'
+import { type FindAllCarsInput, type FindAllCarsOutPut, FindAllCarsUseCase } from '../../../application/use-case/car/find-all-car-use-case'
+import { type CreateCarUsageInput, type CreateCarUsageOutPut, CreateCarUsageUseCase, type FindCarUsageOutPut, FindCarUsageUseCase, type UpdateCarUsageInput, type UpdateCarUsageOutPut, UpdateCarUsageUseCase } from '../../../application/use-case/usage'
+import { type CreateUserInput, type CreateUserOutPut, CreateUserUseCase, type FindUserInput, type FindUserOutPut, FindUserUseCase, type UpdateUserInput, type UpdateUserOutPut, UpdateUserUseCase, type DeleteUserInput, type DeleteUserOutPut, DeleteUserUseCase, type FindAllUserInput, type FindAllUserOutPut, FindAllUserUseCase } from '../../../application/use-case/user'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
 import { container } from 'tsyringe'
 
-// Create Expense
-container.register<UseCase<CreateExpenseInput, CreateExpenseOutPut>>('CreateExpenseUseCase', CreateExpenseUseCase)
-// Find Expense
-container.register<UseCase<FindExpenseInput, FindExpenseOutPut>>('FindExpenseUseCase', FindExpenseUseCase)
-// Update Expense
-container.register<UseCase<UpdateExpenseInput, UpdateExpenseOutPut>>('UpdateExpenseUseCase', UpdateExpenseUseCase)
-// Delete Expense
-container.register<UseCase<DeleteExpenseInput, DeleteExpenseOutPut>>('DeleteExpenseUseCase', DeleteExpenseUseCase)
+// Create Car
+container.register<UseCase<CreateCarInput, CreateCarOutPut>>('CreateCarUseCase', CreateCarUseCase)
+// Find Car
+container.register<UseCase<FindCarInput, FindCarOutPut>>('FindCarUseCase', FindCarUseCase)
+// Find Car
+container.register<UseCase<FindAllCarsInput, FindAllCarsOutPut[]>>('FindAllCarsUseCase', FindAllCarsUseCase)
+// Update Car
+container.register<UseCase<UpdateCarInput, UpdateCarOutPut>>('UpdateCarUseCase', UpdateCarUseCase)
+// Delete Car
+container.register<UseCase<DeleteCarInput, DeleteCarOutPut>>('DeleteCarUseCase', DeleteCarUseCase)
 
 // User Containers
 
@@ -19,9 +22,18 @@ container.register<UseCase<DeleteExpenseInput, DeleteExpenseOutPut>>('DeleteExpe
 container.register<UseCase<CreateUserInput, CreateUserOutPut>>('CreateUserUseCase', CreateUserUseCase)
 // Find User
 container.register<UseCase<FindUserInput, FindUserOutPut>>('FindUserUseCase', FindUserUseCase)
+// Find User
+container.register<UseCase<FindAllUserInput, FindAllUserOutPut[]>>('FindAllUserUseCase', FindAllUserUseCase)
 // Update User
 container.register<UseCase<UpdateUserInput, UpdateUserOutPut>>('UpdateUserUseCase', UpdateUserUseCase)
 // Delete User
 container.register<UseCase<DeleteUserInput, DeleteUserOutPut>>('DeleteUserUseCase', DeleteUserUseCase)
-// Login User
-container.register<UseCase<LoginUserUseCaseInput, LoginUserUseCaseOutPut>>('LoginUserUseCase', LoginUserUseCase)
+
+// Car Usage Containers
+
+// Create User
+container.register<UseCase<CreateCarUsageInput, CreateCarUsageOutPut>>('CreateCarUsageUseCase', CreateCarUsageUseCase)
+// Find CarUsage
+container.register<UseCase<any, FindCarUsageOutPut[]>>('FindCarUsageUseCase', FindCarUsageUseCase)
+// Update CarUsage
+container.register<UseCase<UpdateCarUsageInput, UpdateCarUsageOutPut>>('UpdateCarUsageUseCase', UpdateCarUsageUseCase)

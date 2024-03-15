@@ -4,6 +4,7 @@ import { type Repository } from '../protocols/repository-interface'
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo'
 import { NotFoundError } from '../../shared/erros/not-found-error.er'
 import { inject, injectable } from 'tsyringe'
+import { AlreadyExistsError } from '../../shared/erros/already-exists-error.er copy'
 @injectable()
 export class UserRepository implements Repository<User> {
   constructor (
@@ -12,12 +13,18 @@ export class UserRepository implements Repository<User> {
   ) { }
 
   async create (entity: User): Promise<void> {
+    const data = await this.prisma.user.findFirst({
+      where: {
+        name: entity.name
+      }
+    })
+
+    if (data) throw new AlreadyExistsError(`This user name: ${data.name} already exists`)
+
     await this.prisma.user.create({
       data: {
         user_id: entity.user_id.id,
-        name: entity.name,
-        email: entity.email,
-        password: entity.password
+        name: entity.name
       }
     })
   }
@@ -35,9 +42,7 @@ export class UserRepository implements Repository<User> {
       where: { user_id: entity.user_id.id },
       data: {
         user_id: entity.user_id.id,
-        name: entity.name,
-        email: entity.email,
-        password: entity.password
+        name: entity.name
       }
     })
   }
@@ -53,9 +58,7 @@ export class UserRepository implements Repository<User> {
 
     return new User({
       user_id: Uuid.create(data.user_id),
-      name: data.name,
-      email: data.email,
-      password: data.password
+      name: data.name!
     })
   }
 
@@ -75,20 +78,23 @@ export class UserRepository implements Repository<User> {
     })
   }
 
-  async findByEmail (email: string): Promise<User | null> {
-    const data = await this.prisma.user.findFirst({
-      where: {
-        email
-      }
-    })
+  findBy (): Promise<User | null> {
+    throw new Error('Method Not Implemented')
+  }
 
-    if (!data) return null
+  async findAll (): Promise<User[] | null> {
+    // Consultar o banco de dados
+    const users = await this.prisma.user.findMany()
 
-    return new User({
-      user_id: Uuid.create(data.user_id),
-      name: data.name,
-      email: data.email,
-      password: data.password
-    })
+    // Verificar se há carros encontrados
+    if (users.length === 0) {
+      return null
+    }
+
+    // Mapear os carros retornados para o modelo de carro e retornar
+    return users.map(user => new User({
+      user_id: Uuid.create(user.user_id as string),
+      name: user.name
+    }))
   }
 }

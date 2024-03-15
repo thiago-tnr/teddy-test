@@ -7,11 +7,10 @@ import { type User } from '../../../domain/entities/user.entity'
 export type FindUserInput = {
   user_id: string
 }
-// TODO updated_at is missing!
+
 export type FindUserOutPut = {
   user_id: string
   name: string
-  email: string
 }
 @injectable()
 export class FindUserUseCase implements UseCase<FindUserInput, FindUserOutPut> {
@@ -27,8 +26,7 @@ export class FindUserUseCase implements UseCase<FindUserInput, FindUserOutPut> {
 
     return {
       user_id: user.user_id.id,
-      name: user.name,
-      email: user.email
+      name: user.name
     }
   }
 }

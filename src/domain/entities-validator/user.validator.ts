@@ -1,19 +1,13 @@
-import { IsString, IsEmail } from 'class-validator'
+import { MinLength } from 'class-validator'
 import { ClassValidatorFields } from '../validator-protocol/class-validator-fields'
 import { type User } from '../entities/user.entity'
 
 export class UserRules {
-  @IsString()
+  @MinLength(3)
     name!: string
 
-  @IsEmail()
-    email!: string
-
-  @IsString()
-    password!: string
-
-  constructor ({ name, email, password }: User) {
-    Object.assign(this, { name, email, password })
+  constructor ({ name }: User) {
+    Object.assign(this, { name })
   }
 }
 

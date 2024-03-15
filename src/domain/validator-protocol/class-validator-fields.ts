@@ -11,8 +11,8 @@ export abstract class ClassValidatorFields<PropsValidated> implements IValidator
     this.validatedData ?? undefined
   }
 
-  validate (data: PropsValidated): boolean {
-    const errors = validateSync(data as object)
+  validate (entity: PropsValidated): boolean {
+    const errors = validateSync(entity as object)
     if (errors.length) {
       this.errors = {}
       for (const error of errors) {
@@ -20,7 +20,7 @@ export abstract class ClassValidatorFields<PropsValidated> implements IValidator
         this.errors[field] = Object.values(error.constraints!)
       }
     } else {
-      this.validatedData = data
+      this.validatedData = entity
     }
     return !errors.length
   }

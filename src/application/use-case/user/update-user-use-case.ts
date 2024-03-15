@@ -29,17 +29,13 @@ export class UpdateUserUseCase implements UseCase<UpdateUserInput, UpdateUserOut
 
     if (!user) throw new NotFoundError()
 
-    input.email && user.changeEmail(input.email)
-    input.password && user.changePassword(input.password)
     input.name && user.changeName(input.name)
 
     await this.repository.update(user)
 
     return {
       user_id: user.user_id.id,
-      name: user.name,
-      email: user.email,
-      password: user.password
+      name: user.name
     }
   }
 }
