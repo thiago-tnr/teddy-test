@@ -66,7 +66,7 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 1. **Execute o Docker Compose para iniciar o servidor e o banco de dados:**
 
    ```bash
-   docker-compose up -d
+   docker-compose up
    ```
 
    Isso iniciará a aplicação em segundo plano.
