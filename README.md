@@ -45,13 +45,13 @@ Certifique-se de ter os seguintes pré-requisitos instalados em sua máquina:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/thiago-tnr/onfly
+https://github.com/thiago-tnr/car-usage
       ```
 
 2. **Navegue até o diretório do projeto e abra o mesmo com seu editor de preferência:**
 
    ```bash
-   cd onfly
+   cd car-usage
    ```
 
 3. **Conceda permissão de execução ao script de inicialização, rode no terminal o comando:**
@@ -93,63 +93,66 @@ Agora que você configurou o projeto, pode iniciar a aplicação seguindo estas 
 
 ## Funcionalidades
 
+# Nome do Projeto
 
-- Autenticação de usuário: garante acesso restrito à API através de token JWT.
+Descrição breve do projeto.
 
-CRUD de despesas:
+## Funcionalidades
 
-- Criação: registre novas despesas com validação de dados (data, valor, descrição).
+### Cadastro de automóveis (CRUD)
 
-- Leitura: visualize todas as suas despesas ou busque por filtros específicos.
+- **Cadastrar:** Registra um novo automóvel.
+- **Atualizar:** Atualiza um automóvel cadastrado.
+- **Excluir:** Remove um automóvel cadastrado.
+- **Recuperar:** Obtém um automóvel cadastrado pelo seu identificador único.
+- **Listar:** Lista os automóveis cadastrados, com a opção de filtrar por cor e marca.
 
-- Atualização: edite informações das suas despesas (descrição, valor).
+### Cadastro de motoristas (CRUD)
 
-- Exclusão: remova despesas que não precisa mais.
+- **Cadastrar:** Registra um novo motorista.
+- **Atualizar:** Atualiza um motorista cadastrado.
+- **Excluir:** Remove um motorista cadastrado.
+- **Recuperar:** Obtém um motorista cadastrado pelo seu identificador único.
+- **Listar:** Lista os motoristas cadastrados, com a opção de filtrar por nome.
 
-Validação de dados:
+### Utilização de um automóvel
 
-- Usuário existente: garante que o usuário da despesa está cadastrado.
+- **Criar registro de utilização:** Representa a utilização de um automóvel por um motorista, com uma data de início e um texto do motivo de utilização.
+- **Finalizar utilização:** Finaliza a utilização de um automóvel por um motorista, guardando a data de finalização.
+- **Listar registros de utilização:** Lista os registros de utilização cadastrados no sistema com o nome do motorista e as informações do automóvel utilizado.
 
-- Data válida: impede o registro de despesas com data futura.
+### Controle de recursos
 
-- Valor positivo: garante valores de despesa consistentes.
+- **Automóvel:**
+  - Placa
+  - Cor
+  - Marca
+- **Motorista:**
+  - Nome
+- **Utilização do automóvel:**
+  - Data de início da utilização
+  - Data de término da utilização
+  - Motorista que utilizou
+  - Automóvel utilizado
+  - Motivo de utilização
 
-- Descrição concisa: limita o tamanho da descrição a 191 caracteres.
+### Regras de negócio
 
-Restrição de acessos:
-
-- Somente o usuário dono da despesa pode realizar CRUD.
-
-- Protege contra acessos indevidos e alterações em dados de outros usuários.
-
-Notificação por email:
-
-- Envia email para o usuário ao cadastrar uma despesa.
-
-- Informa o título "Despesa cadastrada".
+- Um automóvel só pode ser utilizado por um motorista por vez.
+- Um motorista que já esteja utilizando um automóvel não pode utilizar outro automóvel ao mesmo tempo.
 
 ## Boas práticas:
 
-
 - Clean Code: código limpo, legível e fácil de manter.
-
 - Padronização: organização e consistência no código.
-
 - Documentação: explicação clara das funcionalidades da API.
-
 - Testes unitários: garantem a robustez da API.
 
 ## Benefícios:
 
-
-- Segurança na gestão de despesas.
-
+- Segurança na gestão de carros.
 - Validação de dados garante confiabilidade.
-
 - Controle de acesso individualizado.
-
-- Notificação instantânea de novas despesas.
-
 - Código de alta qualidade e fácil de manter.
 
 ## Observação
