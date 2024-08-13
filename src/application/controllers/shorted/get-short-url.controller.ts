@@ -18,13 +18,16 @@ export class GetUrlController implements Controller {
   ) {}
 
   async handle (request: Request, response: Response): Promise<Response> {
-    const shortUrl = ShortUrl.parse(request.params.shortUrl)
-    const find = await this.useCase.execute({ shortUrl })
+    try {
+      const shortUrl = ShortUrl.parse(request.params.shortUrl)
+      const find = await this.useCase.execute({ shortUrl })
+      const originalUrl = find.originalUrl.startsWith('http://') || find.originalUrl.startsWith('https://')
+        ? find.originalUrl
+        : `http://${find.originalUrl}`
 
-    const originalUrl = find.originalUrl.startsWith('http://') || find.originalUrl.startsWith('https://')
-      ? find.originalUrl
-      : `http://${find.originalUrl}`
-
-    response.redirect(originalUrl)
+      response.redirect(originalUrl)
+    } catch (e) {
+      return response.status(400).send('Invalid URL format')
+    }
   }
 }
