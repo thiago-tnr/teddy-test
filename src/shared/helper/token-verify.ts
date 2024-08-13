@@ -12,7 +12,6 @@ export class TokenService {
 
     try {
       const decoded: any = jwt.verify(token, process.env.JWT_SEC!)
-      console.log(decoded.id.id)
       return decoded.id.id
     } catch (err) {
       console.error('Invalid token:', err)

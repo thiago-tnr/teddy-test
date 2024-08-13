@@ -23,7 +23,6 @@ export class ShortUrlController implements Controller {
   async handle (request: Request, response: Response): Promise<Response> {
     const { url }: ShortUrlInput = request.body
     const userId = TokenService.getUserIdFromRequest(request)
-    console.log(userId, 'userId')
     if (!url) throw new RequiredError('Url is required')
     const shortUrl = await this.useCase.execute({ url, userId })
 

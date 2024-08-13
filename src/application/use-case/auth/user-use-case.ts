@@ -20,9 +20,7 @@ export default class LoginUserUseCase implements UseCase<UserLoginInputUseCase, 
 
   async execute ({ email, password }: UserLoginInputUseCase): Promise<User> {
     if (email && password) {
-      console.log(email, 'email')
       const user = await this.repository.findByEmail(email)
-      console.log(email)
       if (!user) {
         throw new AppError('Email or password wrong, or user not found, try again')
       }

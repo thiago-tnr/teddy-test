@@ -8,4 +8,4 @@ RUN apt-get install -y git
 
 RUN git config --global --add safe.directory /home/app
 
-CMD ["docker", "run", "-it", "-v", "$(pwd)/.git:/app/.git", "onfly-app"]
+CMD ["docker", "run", "-it", "-v", "$(pwd)/.git:/app/.git", "teddy-app"]
