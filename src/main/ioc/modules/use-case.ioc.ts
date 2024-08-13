@@ -1,39 +1,26 @@
-import { type CreateCarInput, type CreateCarOutPut, CreateCarUseCase, type FindCarInput, type FindCarOutPut, FindCarUseCase, type UpdateCarInput, type UpdateCarOutPut, UpdateCarUseCase, type DeleteCarInput, type DeleteCarOutPut, DeleteCarUseCase } from '../../../application/use-case/car'
-import { type FindAllCarsInput, type FindAllCarsOutPut, FindAllCarsUseCase } from '../../../application/use-case/car/find-all-car-use-case'
-import { type CreateCarUsageInput, type CreateCarUsageOutPut, CreateCarUsageUseCase, type FindCarUsageOutPut, FindCarUsageUseCase, type UpdateCarUsageInput, type UpdateCarUsageOutPut, UpdateCarUsageUseCase } from '../../../application/use-case/usage'
-import { type CreateUserInput, type CreateUserOutPut, CreateUserUseCase, type FindUserInput, type FindUserOutPut, FindUserUseCase, type UpdateUserInput, type UpdateUserOutPut, UpdateUserUseCase, type DeleteUserInput, type DeleteUserOutPut, DeleteUserUseCase, type FindAllUserInput, type FindAllUserOutPut, FindAllUserUseCase } from '../../../application/use-case/user'
+import LoginUserUseCase, { type UserLoginInputUseCase, type UserLoginOutPutUseCase } from '../../../application/use-case/auth/user-use-case'
+import { type ShortUrlInput, type ShortUrlOutput, ShortUrlUseCase } from '../../../application/use-case/shorted/create-short-url-use-case'
+import { type DeleteShortUrlInput, type DeleteShortUrlOutPut, DeleteShortUrlUseCase } from '../../../application/use-case/shorted/delete-user-use-case'
+import { FindAllUrlUseCase, type FindAllUrlInput, type FindAllUrlOutPut } from '../../../application/use-case/shorted/find-all-short-url-use-case'
+import { type GetUrlInput, type GetUrlOutPut, GetUrlUseCase } from '../../../application/use-case/shorted/get-short-url-use-case'
+import { type UpdateUrlInput, type UpdateUrlOutPut, UpdateUrlUseCase } from '../../../application/use-case/shorted/update-short-url-use-case'
+import { type CreateUserInput, type CreateUserOutPut, CreateUserUseCase, type FindUserInput, type FindUserOutPut, FindUserUseCase, type UpdateUserInput, type UpdateUserOutPut, UpdateUserUseCase, type DeleteUserInput, type DeleteUserOutPut, DeleteUserUseCase } from '../../../application/use-case/user'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
 import { container } from 'tsyringe'
-
-// Create Car
-container.register<UseCase<CreateCarInput, CreateCarOutPut>>('CreateCarUseCase', CreateCarUseCase)
-// Find Car
-container.register<UseCase<FindCarInput, FindCarOutPut>>('FindCarUseCase', FindCarUseCase)
-// Find Car
-container.register<UseCase<FindAllCarsInput, FindAllCarsOutPut[]>>('FindAllCarsUseCase', FindAllCarsUseCase)
-// Update Car
-container.register<UseCase<UpdateCarInput, UpdateCarOutPut>>('UpdateCarUseCase', UpdateCarUseCase)
-// Delete Car
-container.register<UseCase<DeleteCarInput, DeleteCarOutPut>>('DeleteCarUseCase', DeleteCarUseCase)
-
-// User Containers
 
 // Create User
 container.register<UseCase<CreateUserInput, CreateUserOutPut>>('CreateUserUseCase', CreateUserUseCase)
 // Find User
 container.register<UseCase<FindUserInput, FindUserOutPut>>('FindUserUseCase', FindUserUseCase)
-// Find User
-container.register<UseCase<FindAllUserInput, FindAllUserOutPut[]>>('FindAllUserUseCase', FindAllUserUseCase)
 // Update User
 container.register<UseCase<UpdateUserInput, UpdateUserOutPut>>('UpdateUserUseCase', UpdateUserUseCase)
 // Delete User
 container.register<UseCase<DeleteUserInput, DeleteUserOutPut>>('DeleteUserUseCase', DeleteUserUseCase)
 
-// Car Usage Containers
+container.register<UseCase<UserLoginInputUseCase, UserLoginOutPutUseCase>>('LoginUserUseCase', LoginUserUseCase)
 
-// Create User
-container.register<UseCase<CreateCarUsageInput, CreateCarUsageOutPut>>('CreateCarUsageUseCase', CreateCarUsageUseCase)
-// Find CarUsage
-container.register<UseCase<any, FindCarUsageOutPut[]>>('FindCarUsageUseCase', FindCarUsageUseCase)
-// Update CarUsage
-container.register<UseCase<UpdateCarUsageInput, UpdateCarUsageOutPut>>('UpdateCarUsageUseCase', UpdateCarUsageUseCase)
+container.register<UseCase<ShortUrlInput, ShortUrlOutput>>('ShortUrlUseCase', ShortUrlUseCase)
+container.register<UseCase<GetUrlInput, GetUrlOutPut>>('GetUrlUseCase', GetUrlUseCase)
+container.register<UseCase<FindAllUrlInput, FindAllUrlOutPut>>('FindAllUrlUseCase', FindAllUrlUseCase)
+container.register<UseCase<UpdateUrlInput, UpdateUrlOutPut>>('UpdateUrlUseCase', UpdateUrlUseCase)
+container.register<UseCase<DeleteShortUrlInput, DeleteShortUrlOutPut>>('DeleteShortUrlUseCase', DeleteShortUrlUseCase)

@@ -8,26 +8,23 @@ datasource db {
 }
 
 model User {
-  user_id   String     @id() @db.NVarChar(255)
-  name      String     @db.NVarChar(255) @unique
-  carUsages CarUsage[]
+  user_id    String     @id @db.NVarChar(255)
+  name       String     @db.NVarChar(255) @unique
+  email      String     @db.NVarChar(255) @unique
+  password   String     @db.NVarChar(255) @unique
+  created_at DateTime   @db.DateTime
+  updated_at DateTime?   @db.DateTime
+  shortUrls  ShortUrl[] @relation("UserShortUrls")
 }
 
-model Car {
-  car_id    String     @id @db.NVarChar(255)
-  plate     String     @db.NVarChar(8) @unique
-  color     String     @db.NVarChar(255)
-  brand     String     @db.NVarChar(255)
-  carUsages CarUsage[]
-}
-
-model CarUsage {
-  car_usage_id        String    @id @db.NVarChar(255)
-  startDate DateTime  @db.DateTime
-  endDate   DateTime? @db.DateTime
-  driver  String    @db.NVarChar(255)
-  car     String    @db.NVarChar(8)
-  reason    String    @db.NVarChar(255)
-  user_driver    User      @relation(fields: [driver], references: [name], onDelete: NoAction, onUpdate: NoAction)
-  car_plate       Car       @relation(fields: [car], references: [plate], onDelete: NoAction, onUpdate: NoAction)
+model ShortUrl {
+  url_id       String   @id @db.NVarChar(255)
+  original_url String   @db.NVarChar(255)
+  short_url    String   @db.NVarChar(255)
+  clicks       Int      @db.Int
+  user_id      String?   @db.NVarChar(255)
+  created_at   DateTime @db.DateTime
+  updated_at   DateTime? @db.DateTime
+  deleted_at   DateTime? @db.DateTime
+  user         User?     @relation("UserShortUrls", fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }

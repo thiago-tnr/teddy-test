@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { carRoutes } from './car/car-routes'
+import { shortUrl } from './shortUrl/short.routes'
 import { userRoutes } from './user/user.routes'
-import { carUsageRoutes } from './carUsage/car-usage.routes'
+import { authShortUrl } from './shortUrl/short.auth.routes'
 
 export const applicationRoutes = Router()
-// car routes
+
 applicationRoutes.use('/user', userRoutes)
-applicationRoutes.use('/car', carRoutes)
-applicationRoutes.use('/usage', carUsageRoutes)
+applicationRoutes.use('/', shortUrl)
+applicationRoutes.use('/shortUrl', authShortUrl)

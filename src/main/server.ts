@@ -1,11 +1,10 @@
-import 'reflect-metadata'
 import 'express-async-errors'
+import 'reflect-metadata'
 
 import express, { type NextFunction, type Request, type Response } from 'express'
+import { errorValidate } from '../shared/helper/error-validate'
 import './ioc/modules/index'
 import { applicationRoutes } from './routes/index.routes'
-import { errorValidate } from '../shared/helper/error-validate'
-
 const app = express()
 
 app.use(express.json())

@@ -11,7 +11,6 @@ export class UserRules {
   }
 }
 
-// Refactor - strong connection class, needs to be an abstraction
 export class UserValidator extends ClassValidatorFields<UserRules> {
   validate (entity: User): boolean {
     return super.validate(new UserRules(entity))

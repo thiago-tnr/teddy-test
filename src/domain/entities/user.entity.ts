@@ -7,20 +7,27 @@ import { EntityValidationError } from '../../shared/erros/validate-entity-error.
 export type UserProps = {
   user_id?: Uuid
   name: string
+  email: string
+  password: string
 }
 
 export type CreateUserProps = {
   name: string
+  email: string
+  password: string
 }
 
 export class User extends Entity {
   user_id: Uuid
   name: string
-
+  email: string
+  password: string
   constructor (input: UserProps) {
     super()
     this.user_id = input.user_id ?? Uuid.create()
     this.name = input.name
+    this.email = input.email
+    this.password = input.password
   }
 
   get entity_id (): ValueObject {
@@ -35,6 +42,16 @@ export class User extends Entity {
 
   changeName (name: string): void {
     this.name = name
+    User.validate(this)
+  }
+
+  changeEmail (email: string): void {
+    this.email = email
+    User.validate(this)
+  }
+
+  changePassword (password: string): void {
+    this.password = password
     User.validate(this)
   }
 

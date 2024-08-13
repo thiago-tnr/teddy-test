@@ -2,15 +2,15 @@ import 'reflect-metadata'
 import { FindUserUseCase, type FindUserInput } from '../../../application/use-case/user'
 import { User } from '../../../domain/entities/user.entity'
 import { type Repository } from '../../../infra/protocols/repository-interface'
-import { NotFoundError } from '../../../shared/erros/not-found-error.er'
 import { Uuid } from '../../../shared/domain/value-objects/uuid.vo'
+import { NotFoundError } from '../../../shared/erros/not-found-error.er'
 
 // Mock do repositório para simular a interação com o banco de dados
 const mockRepository: Repository<User> = {
   create: jest.fn(),
   update: jest.fn(),
   find: jest.fn(),
-  findBy: jest.fn(),
+  findByEmail: jest.fn(),
   delete: jest.fn(),
   findAll: jest.fn()
 }

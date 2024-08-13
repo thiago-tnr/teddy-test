@@ -1,6 +1,6 @@
-export class AlreadyExistsError extends Error {
+export class AuthError extends Error {
   constructor (message?: string) {
-    super(message ?? 'User already exists')
-    this.name = 'AlreadyExistsError'
+    super(message ?? 'Not allowed')
+    this.name = 'AuthError'
   }
 }

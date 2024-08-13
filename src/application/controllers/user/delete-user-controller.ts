@@ -2,10 +2,10 @@ import { type Request, type Response } from 'express'
 import { type Controller } from '../../../shared/application/protocol/controller-interface'
 import { type UseCase } from '../../../shared/application/protocol/use-case-interface'
 import { inject, injectable } from 'tsyringe'
-import { FindInput } from '../../../shared/validate/zod-validation'
+import { ShortUrl } from '../../../shared/validate/zod-validation'
 
 export type DeleteUserInputController = {
-  user_id: string
+  shortUrl: string
 }
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 type DeleteUserOutPutController = void
@@ -17,9 +17,9 @@ export class DeleteUserController implements Controller {
   ) { }
 
   async handle (request: Request, response: Response): Promise<Response> {
-    const UserDto = FindInput.parse(request.params.user_id)
+    const shortUrl = ShortUrl.parse(request.body)
 
-    await this.useCase.execute({ user_id: UserDto })
+    await this.useCase.execute({ shortUrl })
     return response.status(201).json({ message: 'Deleted with success' })
   }
 }

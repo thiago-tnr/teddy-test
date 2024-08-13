@@ -7,6 +7,8 @@ import { CreateUserInputValidate } from '../../../shared/validate/zod-validation
 export type CreateUserInputController = {
   user_id?: string
   name: string
+  email: string
+  password: string
 }
 
 export type CreateUserOutPutController = {

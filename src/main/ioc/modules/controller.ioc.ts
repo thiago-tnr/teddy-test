@@ -1,41 +1,28 @@
-import { CreateCarController, FindCarController, UpdateCarController, DeleteCarController } from '../../../application/controllers/car'
-import { FindAllCarsController } from '../../../application/controllers/car/find-all-car-controller'
-import { CreateCarUsageController, FindCarUsageController, UpdateCarUsageController } from '../../../application/controllers/usage'
-import { CreateUserController, FindUserController, UpdateUserController, DeleteUserController } from '../../../application/controllers/user'
-import { FindAllUserController } from '../../../application/controllers/user/find-all-user-controller'
-
-import { type Controller } from '../../../shared/application/protocol/controller-interface'
+import { LoginUserController } from '../../../application/controllers/auth/user-controller'
+import { ShortUrlController } from '../../../application/controllers/shorted/create-short-url-controller'
+import { CreateUserController, DeleteUserController, FindUserController, UpdateUserController } from '../../../application/controllers/user'
 import { container } from 'tsyringe'
-
-// Create Car
-container.register<Controller>('CreateCarController', CreateCarController)
-// Find Car
-container.register<Controller>('FindCarController', FindCarController)
-// Find All Cars
-container.register<Controller>('FindAllCarsController', FindAllCarsController)
-// Update Car
-container.register<Controller>('UpdateCarController', UpdateCarController)
-// Delete Car
-container.register<Controller>('DeleteCarController', DeleteCarController)
+import { type Controller } from '../../../shared/application/protocol/controller-interface'
+import { GetUrlController } from '../../../application/controllers/shorted/get-short-url.controller'
+import { FindAllUrlController } from '../../../application/controllers/shorted/find-all-short-url.controller'
+import { UpdateUrlController } from '../../../application/controllers/shorted/update-short-url.controller'
+import { DeleteShortUrlController } from '../../../application/controllers/shorted/delete-user-controller'
 
 // User Containers
 
-// Create Car
 container.register<Controller>('CreateUserController', CreateUserController)
 // Find User
 container.register<Controller>('FindUserController', FindUserController)
-// Find All Users
-container.register<Controller>('FindAllUserController', FindAllUserController)
 // Update User
 container.register<Controller>('UpdateUserController', UpdateUserController)
 // Delete User
 container.register<Controller>('DeleteUserController', DeleteUserController)
 
-// Car Usage Containers
+// User Login
+container.register<Controller>('LoginUserController', LoginUserController)
 
-// Create Car
-container.register<Controller>('CreateCarUsageController', CreateCarUsageController)
-// Find CarUsage
-container.register<Controller>('FindCarUsageController', FindCarUsageController)
-// Update CarUsage
-container.register<Controller>('UpdateCarUsageController', UpdateCarUsageController)
+container.register<Controller>('ShortUrlController', ShortUrlController)
+container.register<Controller>('GetUrlController', GetUrlController)
+container.register<Controller>('FindAllUrlController', FindAllUrlController)
+container.register<Controller>('UpdateUrlController', UpdateUrlController)
+container.register<Controller>('DeleteShortUrlController', DeleteShortUrlController)

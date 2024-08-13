@@ -15,12 +15,13 @@ export const errorValidate = (err: Error, request: Request, response: Response, 
   if (err instanceof PrismaClientKnownRequestError) {
     return response.status(400).json({
       status: 'Prisma Request Error',
-      message: 'Ensures that the car plate and user exist'
+      message: 'Ensures that url'
     })
   }
 
   if (!(err instanceof Error)) {
     return response.status(500).json({
+      error: err,
       status: 'InternalServerError',
       message: 'An unexpected error occurred.'
     })
@@ -37,13 +38,13 @@ export const errorValidate = (err: Error, request: Request, response: Response, 
         status: err.name,
         message: err.message
       })
-    case 'UsageError':
+    case 'RequiredError':
       return response.status(403).json({
         status: err.name,
         message: err.message
       })
-    case 'AlreadyExistsError':
-      return response.status(409).json({
+    case 'AuthError':
+      return response.status(403).json({
         status: err.name,
         message: err.message
       })
